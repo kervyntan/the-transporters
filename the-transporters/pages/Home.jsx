@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
+// import { DirectionsCarIcon } from '@mui/icons-material/DirectionsCar';
+import CameraIcon from "@mui/icons-material/Camera";
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -34,6 +36,21 @@ const Home = () => {
       <Text style={styles.welcome} onPress={onClickText} numberOfLines={1} ellipsizeMode="middle"> {dummyText} </Text>
       <TextInput style={styles.input} placeholder="This is a test" onChangeText={text => setTextInput(text)} value={textInput} />
       <Button style={styles.button} title="Increase" onPress={() => setCounter(counter + 1)}/>
+
+      <View style={styles.navigation}>
+        {/* <CameraIcon /> */}
+        <Text style={styles.welcome}>
+          hello
+        </Text>
+
+        <Text style={styles.welcome}>
+          hello
+        </Text>
+
+        <Text style={styles.welcome}>
+          hello
+        </Text>
+      </View>
     </View>
   );
 }
@@ -60,5 +77,15 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop : 10,
+  },
+  navigation: {
+    backgroundColor : "blue",
+    height : 60,
+    width: "100%",
+    position : "absolute",
+    bottom : 0,
+    flex : 1,
+    flexDirection: "row",
+    justifyContent : "space-around"
   }
 });
