@@ -22,7 +22,7 @@ const Home = () => {
 
   // Adding a login page with proper authentication
   return (
-    <View style={homeStyles.container}>
+    <View>
       <StatusBar animated backgroundColor='#6BB7D8' />
       <Animated.View style={{ opacity : fadeAnim }}>
         <Text style={homeStyles.welcome}> Welcome Back </Text>
