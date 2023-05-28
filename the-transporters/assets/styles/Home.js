@@ -30,6 +30,9 @@ const homeStyles = StyleSheet.create({
       flex : 1,
       flexDirection: "row",
       justifyContent : "space-around"
+    },
+    buttonNav: {
+      fontSize : 10,
     }
   });
 

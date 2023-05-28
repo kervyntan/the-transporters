@@ -3,11 +3,17 @@ import { Text, View, TextInput, Button} from 'react-native';
 // import { DirectionsCarIcon } from '@mui/icons-material/DirectionsCar';
 import homeStyles from '../assets/styles/Home';
 import CameraIcon from "@mui/icons-material/Camera";
+import { Dimensions } from 'react-native';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import CarparkAvailability from './CarparkAvailability';
 
 const Home = () => {
 
+  // const { height,  width } = Dimensions.get('window');
+
+  // console.log(height);
+  // console.log(width);r
   const [dummyText, setDummyText] = useState("");
   const [counter, setCounter] = useState(0);
 
@@ -39,9 +45,11 @@ const Home = () => {
       <Button style={homeStyles.button} title="Increase" onPress={() => setCounter(counter + 1)}/>
 
       <View style={homeStyles.navigation}>
+
+
         {/* <CameraIcon /> */}
-        <Text style={homeStyles.welcome}>
-          hello
+        {/* <Text style={homeStyles.welcome}>
+          <Button style={homeStyles.buttonNav} title="Carpark Availability" onPress={() => console.log("Hello")} />
         </Text>
 
         <Text style={homeStyles.welcome}>
@@ -50,7 +58,7 @@ const Home = () => {
 
         <Text style={homeStyles.welcome}>
           hello
-        </Text>
+        </Text> */}
       </View>
     </View>
   );
