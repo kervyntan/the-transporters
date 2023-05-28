@@ -4,13 +4,17 @@ const homeStyles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+    //   alignItems: 'center',
+    //   justifyContent: 'center',
     },
     welcome: {
-      color: "red",
-      fontSize: 50,
-      textAlign: "center"
+      color: "#000",
+      fontWeight : "lighter",
+      fontSize: "2rem",
+      textAlign: "left",
+      marginTop: "0.875rem",
+      letterSpacing: "0.08em",
+      transition: "opacity 1s"
     },
     input: {
       borderWidth: 1,

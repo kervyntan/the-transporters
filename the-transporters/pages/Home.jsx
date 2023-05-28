@@ -1,65 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, TextInput, Button} from 'react-native';
-// import { DirectionsCarIcon } from '@mui/icons-material/DirectionsCar';
+import { Text, View, TextInput, Button, Animated } from 'react-native';
 import homeStyles from '../assets/styles/Home';
-import CameraIcon from "@mui/icons-material/Camera";
 import { Dimensions } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useState } from 'react';
-import CarparkAvailability from './CarparkAvailability';
+
 
 const Home = () => {
 
-  // const { height,  width } = Dimensions.get('window');
+  // const { height,  width } = Dimensions.get('window'); 
 
-  // console.log(height);
-  // console.log(width);r
-  const [dummyText, setDummyText] = useState("");
-  const [counter, setCounter] = useState(0);
-
-  const [textInput, setTextInput] = useState("");
-
-  const onClickText = () => {
-    setCounter(counter + 1);
-
-    if (counter % 2 === 0) {
-      setDummyText("Counter is even");
-    } else {
-      setDummyText("Counter is odd");
-    }
-  }
+  const fadeAnim = useRef(new Animated.Value(0)).current; // initial value for opacity
 
   useEffect( () => {
-    if (counter % 2 === 0) {
-      setDummyText("Counter is even");
-    } else {
-      setDummyText("Counter is odd");
-    }
-  }, [counter])
+    Animated.timing(fadeAnim, {
+      toValue : 1,
+      duration : 1500,
+      useNativeDriver : true
+    }).start();
+  }, [fadeAnim])
 
+  // Adding a login page with proper authentication
   return (
     <View style={homeStyles.container}>
-      <StatusBar animated backgroundColor='#f9b2c4' />
-      <Text style={homeStyles.welcome} onPress={onClickText} numberOfLines={1} ellipsizeMode="middle"> {dummyText} </Text>
-      <TextInput style={homeStyles.input} placeholder="This is a test" onChangeText={text => setTextInput(text)} value={textInput} />
-      <Button style={homeStyles.button} title="Increase" onPress={() => setCounter(counter + 1)}/>
+      <StatusBar animated backgroundColor='#6BB7D8' />
+      <Animated.View style={{ opacity : fadeAnim }}>
+        <Text style={homeStyles.welcome}> Welcome Back </Text>
+      </Animated.View>
 
-      <View style={homeStyles.navigation}>
-
-
-        {/* <CameraIcon /> */}
-        {/* <Text style={homeStyles.welcome}>
-          <Button style={homeStyles.buttonNav} title="Carpark Availability" onPress={() => console.log("Hello")} />
-        </Text>
-
-        <Text style={homeStyles.welcome}>
-          hello
-        </Text>
-
-        <Text style={homeStyles.welcome}>
-          hello
-        </Text> */}
-      </View>
     </View>
   );
 }
