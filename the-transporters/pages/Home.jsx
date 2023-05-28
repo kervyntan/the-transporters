@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
 // import { DirectionsCarIcon } from '@mui/icons-material/DirectionsCar';
+import styles from '../assets/styles/Home';
 import CameraIcon from "@mui/icons-material/Camera";
 import React, { useEffect } from 'react';
 import { useState } from 'react';
@@ -57,35 +58,3 @@ const Home = () => {
 
 export default Home;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  welcome: {
-    color: "red",
-    fontSize: 50,
-    textAlign: "center"
-  },
-  input: {
-    borderWidth: 1,
-    height: 40,
-    padding : 10,
-    marginBottom : 20
-  },
-  button: {
-    marginTop : 10,
-  },
-  navigation: {
-    backgroundColor : "blue",
-    height : 60,
-    width: "100%",
-    position : "absolute",
-    bottom : 0,
-    flex : 1,
-    flexDirection: "row",
-    justifyContent : "space-around"
-  }
-});
