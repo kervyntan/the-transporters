@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 const homeStyles = StyleSheet.create({
     welcome: {
       color: "#000",
-      fontWeight : "lighter",
+      fontWeight : "light",
       fontSize: "2rem",
       textAlign: "left",
       marginTop: "0.875rem",
-      letterSpacing: "0.08em",
-      transition: "opacity 1s"
+      letterSpacing: 0.08,
+      fontSize: 60
     },
     input: {
       borderWidth: 1,
