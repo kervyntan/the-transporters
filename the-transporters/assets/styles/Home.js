@@ -6,9 +6,10 @@ const homeStyles = StyleSheet.create({
       fontWeight : "light",
       fontSize: "2rem",
       textAlign: "left",
-      marginTop: "0.875rem",
+      top: 30,
       letterSpacing: 0.08,
-      fontSize: 60
+      fontSize: 30,
+      alignSelf: "center"
     },
     input: {
       borderWidth: 1,

@@ -1,8 +1,13 @@
 import React from 'react';
-import { Text } from 'react-native'
+import { View, Text } from 'react-native'
+import Colours from '../assets/styles/Colours';
 
 const PlatformCrowdDensity = () => {
-    <Text> Test </Text>
+    return (
+    <View style={{backgroundColor: Colours.primaryLite, flex: 1}}> 
+        <Text> Test </Text>
+    </View>
+    )
 }
 
 export default PlatformCrowdDensity;
