@@ -29,9 +29,6 @@ export default function App() {
             else {
               iconName = focused ? 'ios-list' : 'ios-list-outline';
             }
-
-
-            // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: '#fff',
@@ -43,7 +40,7 @@ export default function App() {
           // headerShown: false
         })}>
           <Tab.Screen options={{ tabBarBadge : 3 }} name="Home" component={Home} />
-          <Tab.Screen name="Carpark Availability" component={CarparkAvailability} />
+          <Tab.Screen name="Nearest Carpark" component={CarparkAvailability} />
           <Tab.Screen name="Train Crowd" component={PlatformCrowdDensity} />
           <Tab.Screen name="Crowd Forecast" component={PlatformCrowdForecast} />
         </Tab.Navigator>

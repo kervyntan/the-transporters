@@ -10,10 +10,10 @@ const homeStyles = StyleSheet.create({
     welcome: {
       color: "#000",
       fontWeight : "lighter",
-      fontSize: "2rem",
+      fontSize: 32,
       textAlign: "left",
-      marginTop: "0.875rem",
-      letterSpacing: "0.08em",
+      marginTop: 30,
+      // letterSpacing: "0.08em",
       transition: "opacity 1s"
     },
     input: {
