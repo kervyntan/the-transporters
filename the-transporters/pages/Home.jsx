@@ -4,6 +4,7 @@ import homeStyles from '../assets/styles/Home';
 import { Dimensions } from 'react-native';
 import React, { useRef, useEffect } from 'react';
 import { useState } from 'react';
+import Colours from '../assets/styles/Colours';
 
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
   // const { height,  width } = Dimensions.get('window'); 
 
   const fadeAnim = useRef(new Animated.Value(0)).current; // initial value for opacity
+  let firstName = "Kervyn"; //dummy value for now
 
   useEffect( () => {
     Animated.timing(fadeAnim, {
@@ -22,10 +24,10 @@ const Home = () => {
 
   // Adding a login page with proper authentication
   return (
-    <View>
+    <View style={{backgroundColor: Colours.primaryLite, flex: 1}}>
       <StatusBar animated backgroundColor='#6BB7D8' />
       <Animated.View style={{ opacity : fadeAnim }}>
-        <Text style={homeStyles.welcome}> Welcome Back </Text>
+        <Text style={homeStyles.welcome}>Welcome Back, {firstName} !</Text>
       </Animated.View>
 
     </View>
