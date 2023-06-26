@@ -11,6 +11,8 @@ const Home = () => {
 
   // const { height,  width } = Dimensions.get('window'); 
 
+  const [result, setResult] = useState("")
+
   const fadeAnim = useRef(new Animated.Value(0)).current; // initial value for opacity
   let firstName = "Kervyn"; //dummy value for now
 
@@ -21,6 +23,25 @@ const Home = () => {
       useNativeDriver : true
     }).start();
   }, [fadeAnim])
+
+  useEffect(() => {
+    const fetcher = () => {
+      fetch("http://localhost:3000/servicealerts", 
+        {
+          method: 'GET',
+          // mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          }
+        }
+      )
+      .then( res => res.json() )
+      .then( x => { setResult(x); })
+    }
+
+
+    fetcher()
+  }, [])
 
   // Adding a login page with proper authentication
   return (
