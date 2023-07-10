@@ -25,12 +25,6 @@ const Home = () => {
     }).start();
   }, [fadeAnim])
 
-  useEffect(() => {
-    serviceAlerts().then((res) => {
-      setResult(res.data)
-    });
-  }, [])
-
   // Adding a login page with proper authentication
   return (
     <View style={{backgroundColor: Colours.primaryLite, flex: 1}}>

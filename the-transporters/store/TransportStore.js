@@ -1,27 +1,54 @@
 import { useAxios } from "./AxiosConfig/AxiosConfig";
 
+const properties = {
+    serviceAlertsData : {},
+    carparkData : {},
+    platformCrowdData : {},
+    forecastData : {}
+}
+
 const serviceAlerts = () => {
   const axios = useAxios();
 
-  return axios.get("/servicealerts");
+  axios.get("/servicealerts")
+  .then(res => { 
+    if (res.status == 200) {
+        properties.serviceAlertsData = res.data
+    }
+  });
 };
 
-const carparkAvailability = async () => {
+const carparkAvailability = () => {
   const axios = useAxios();
 
-  return axios.get("/carparkavailability");
+  return axios.get("/carparkavailability")
+  .then(res => { 
+    if (res.status == 200) {
+        properties.carparkData = res.data
+    }
+  });
 };
 
-const platformCrowd = async () => {
+const platformCrowd = (trainLine = "CCL") => {
   const axios = useAxios();
 
-  return axios.get("/platformcrowd");
+  axios.get(`/platformcrowd?TrainLine=${trainLine}`)
+  .then(res => { 
+    if (res.status == 200) {
+        properties.platformCrowdData = res.data
+    }
+  });
 };
 
-const crowdForecast = async () => {
+const crowdForecast = (trainLine = "CCL") => {
   const axios = useAxios();
 
-  return axios.get("/crowdforecast");
+  axios.get(`/crowdforecast?TrainLine=${trainLine}`)
+  .then(res => { 
+    if (res.status == 200) {
+        properties.serviceAlertsData = res.data
+    }
+  });
 };
 
-export { serviceAlerts, carparkAvailability, crowdForecast, platformCrowd };
+export { properties, serviceAlerts, carparkAvailability, crowdForecast, platformCrowd };
