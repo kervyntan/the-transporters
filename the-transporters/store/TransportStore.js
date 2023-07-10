@@ -9,25 +9,19 @@ const serviceAlerts = () => {
 const carparkAvailability = async () => {
   const axios = useAxios();
 
-  const response = await axios.get("/servicealerts");
-
-  return response.data;
+  return axios.get("/carparkavailability");
 };
 
 const platformCrowd = async () => {
   const axios = useAxios();
 
-  const response = await axios.get("/servicealerts");
-
-  return response.data;
+  return axios.get("/platformcrowd");
 };
 
 const crowdForecast = async () => {
   const axios = useAxios();
 
-  const response = await axios.get("/servicealerts");
-
-  return response.data;
+  return axios.get("/crowdforecast");
 };
 
 export { serviceAlerts, carparkAvailability, crowdForecast, platformCrowd };

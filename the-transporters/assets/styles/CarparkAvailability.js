@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import Colours from './Colours';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const carparkStyle = StyleSheet.create({
     message: {

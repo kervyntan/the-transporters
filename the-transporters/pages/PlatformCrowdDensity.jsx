@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native'
 import Colours from '../assets/styles/Colours';
 import { platformCrowd } from '../store/TransportStore';
+import platformCrowdStyle from '../assets/styles/PlatformCrowdDensity';
 
 const PlatformCrowdDensity = () => {
     const [result, setResult] = useState("")
@@ -13,7 +14,7 @@ const PlatformCrowdDensity = () => {
     }, [])
     return (
     <View style={{backgroundColor: Colours.primaryLite, flex: 1}}> 
-        <Text> Test </Text>
+        <Text style={platformCrowdStyle.message}> How crowded are the Trains? </Text>
     </View>
     )
 }
