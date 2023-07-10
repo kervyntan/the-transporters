@@ -21,7 +21,7 @@ const serviceAlerts = () => {
 const carparkAvailability = () => {
   const axios = useAxios();
 
-  return axios.get("/carparkavailability")
+  axios.get("/carparkavailability")
   .then(res => { 
     if (res.status == 200) {
         properties.carparkData = res.data
@@ -32,12 +32,8 @@ const carparkAvailability = () => {
 const platformCrowd = (trainLine = "CCL") => {
   const axios = useAxios();
 
-  axios.get(`/platformcrowd?TrainLine=${trainLine}`)
-  .then(res => { 
-    if (res.status == 200) {
-        properties.platformCrowdData = res.data
-    }
-  });
+  console.log("TrainLine is: " + trainLine)
+  return axios.get(`/platformcrowd?TrainLine=${trainLine}`)
 };
 
 const crowdForecast = (trainLine = "CCL") => {
@@ -45,7 +41,7 @@ const crowdForecast = (trainLine = "CCL") => {
 
   axios.get(`/crowdforecast?TrainLine=${trainLine}`)
   .then(res => { 
-    if (res.status == 200) {
+    if (res.status === 200) {
         properties.serviceAlertsData = res.data
     }
   });

@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import React, { useEffect, useState, useRef } from "react";
+import { View, Text, ActivityIndicator } from "react-native";
 import Colours from "../assets/styles/Colours";
 import { platformCrowd, properties } from "../store/TransportStore";
 import RNPickerSelect from "react-native-picker-select";
 import platformCrowdStyle from "../assets/styles/PlatformCrowdDensity";
 
 const PlatformCrowdDensity = () => {
-  const [result, setResult] = useState("");
-
-  const [stations, setStations] = useState([]);
+  const selectedLine = useRef();
 
   const [selectedValue, setSelectedValue] = useState(null);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (selectedValue != null) {
-      platformCrowd(selectedValue);
+    if (selectedValue != null && selectedValue != undefined) {
+      platformCrowd(selectedValue)
+      .then(res => { 
+        if (res.status === 200) {
+            displayStations(res.data)
+        }
+      });
     } else {
-      platformCrowd();
+      platformCrowd("CCL")
+      .then(res => { 
+        if (res.status === 200) {
+            displayStations(res.data)
+        }
+      });
     }
-
-    setResult(properties.platformCrowdData);
-
-    setStations(properties.platformCrowdData.value);
-
-    console.log(properties.platformCrowdData);
 
     if (!isLoaded) {
       setTimeout(() => {
@@ -34,16 +36,15 @@ const PlatformCrowdDensity = () => {
     }
   }, [selectedValue]);
 
-//   useEffect( () => {
-//     setResult()
-//   })
+//   useEffect(() => {
+//     displayStations(properties.platformCrowdData.value);
+//   }, [properties.platformCrowdData.value]);
 
   const displayStations = (res) => {
     if (res != null && res != undefined) {
-
-      return stations.map((item, index) => {
+      return res.map((item) => {
         return (
-          <View key={stations.indexOf(item)}>
+          <View key={res.indexOf(item)}>
             <Text> {item.Station} </Text>
           </View>
         );
@@ -53,32 +54,34 @@ const PlatformCrowdDensity = () => {
 
   return (
     <View style={{ backgroundColor: Colours.primaryLite, flex: 1 }}>
-      <Text style={platformCrowdStyle.message}>
-        Please select the service line:
-      </Text>
+      <View
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Text style={platformCrowdStyle.message}>
+          Please select the service line:
+          <ActivityIndicator size="large" />
+        </Text>
+      </View>
 
       {/* Add a dropdown for selection of service lines */}
       <RNPickerSelect
         onValueChange={(value) => {
-          console.log(value);
           setSelectedValue(value);
         }}
-        placeholder={[{ label: "Circle Line", value: "CCL" }]}
         items={[
           { key: "Circle Line", label: "Circle Line", value: "CCL" },
           { key: "North East Line", label: "North East Line", value: "NEL" },
           { key: "East West Line", label: "East West Line", value: "EWL" },
-          {
-            key: "Thomson East Coast Line",
-            label: "Thomson East Coast Line",
-            value: "TEL",
-          },
           { key: "North South Line", label: "North South Line", value: "NSL" },
           { key: "Downtown Line", label: "Downtown Line", value: "DTL" },
         ]}
       />
 
-      {isLoaded ? displayStations(result) : ""}
+      {isLoaded ? displayStations(properties.platformCrowdData.value) : ""}
     </View>
   );
 };
