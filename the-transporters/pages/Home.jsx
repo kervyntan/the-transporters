@@ -5,6 +5,7 @@ import { Dimensions } from 'react-native';
 import React, { useRef, useEffect } from 'react';
 import { useState } from 'react';
 import Colours from '../assets/styles/Colours';
+import { serviceAlerts } from '../store/TransportStore';
 
 
 const Home = () => {
@@ -23,25 +24,6 @@ const Home = () => {
       useNativeDriver : true
     }).start();
   }, [fadeAnim])
-
-  useEffect(() => {
-    const fetcher = () => {
-      fetch("http://localhost:3000/servicealerts", 
-        {
-          method: 'GET',
-          // mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-          }
-        }
-      )
-      .then( res => res.json() )
-      .then( x => { setResult(x); })
-    }
-
-
-    fetcher()
-  }, [])
 
   // Adding a login page with proper authentication
   return (
