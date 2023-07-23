@@ -15,6 +15,9 @@ const serviceAlerts = async () => {
     if (res.status == 200) {
         properties.serviceAlertsData = res.data
     }
+  })
+  .catch(res => {
+    console.log(res.status)
   });
 };
 
@@ -26,6 +29,9 @@ const carparkAvailability = async () => {
     if (res.status == 200) {
         properties.carparkData = res.data
     }
+  })
+  .catch(res => {
+    console.log(res.status)
   });
 };
 
@@ -52,6 +58,9 @@ const crowdForecast = async (trainLine = "CCL") => {
     if (res.status == 200) {
         properties.serviceAlertsData = res.data
     }
+  })
+  .catch(res => {
+    console.log(res.status)
   });
 };
 
