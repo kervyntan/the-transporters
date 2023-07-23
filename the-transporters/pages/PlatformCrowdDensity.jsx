@@ -12,13 +12,15 @@ const PlatformCrowdDensity = () => {
   const [stations, setStations] = useState(properties.platformCrowdData.value);
 
   useEffect(() => {
-    if (selectedValue != null) {
-      console.log(selectedValue)
-      const promise = new Promise(platformCrowd(selectedValue))
-      .then(() => {
+    const fetchCrowdData = async () => {
+      if (selectedValue != null) {
+        console.log(selectedValue)
+        await platformCrowd(selectedValue)
         setStations(properties.platformCrowdData.value)
-      })
-    } 
+      }
+    }
+
+    fetchCrowdData();
   }, [selectedValue]);
 
 
@@ -40,9 +42,9 @@ const PlatformCrowdDensity = () => {
 
   return (
     <View style={{ backgroundColor: Colours.primaryLite, flex: 1 }}>
-      <Text style={platformCrowdStyle.message}>
+      {/* <Text style={platformCrowdStyle.message}>
         Please select the service line:
-      </Text>
+      </Text> */}
 
       {/* Add a dropdown for selection of service lines */}
       {/* <RNPickerSelect

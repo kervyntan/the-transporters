@@ -29,10 +29,10 @@ const carparkAvailability = () => {
   });
 };
 
-const platformCrowd = (trainLine = "CCL") => {
+const platformCrowd = async (trainLine = "CCL") => {
   const axios = useAxios();
 
-  axios.get(`/platformcrowd?TrainLine=${trainLine}`)
+  return await axios.get(`/platformcrowd?TrainLine=${trainLine}`)
   .then(res => { 
     if (res.status == 200) {
         console.log(res.data)
@@ -44,10 +44,10 @@ const platformCrowd = (trainLine = "CCL") => {
   });
 };
 
-const crowdForecast = (trainLine = "CCL") => {
+const crowdForecast = async (trainLine = "CCL") => {
   const axios = useAxios();
 
-  axios.get(`/crowdforecast?TrainLine=${trainLine}`)
+  return await axios.get(`/crowdforecast?TrainLine=${trainLine}`)
   .then(res => { 
     if (res.status == 200) {
         properties.serviceAlertsData = res.data
