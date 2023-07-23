@@ -6,6 +6,27 @@ const platformCrowdStyle = StyleSheet.create({
         justifyContent: 'center',
         fontSize: 25
     },
+    lowCrowdLevel: {
+        color: "#2dc937"
+    },
+    mediumCrowdLevel: {
+        color: "#e7b416"
+    },
+    highCrowdLevel: {
+        color: "#cc3232"
+    },  
+    spacing: {
+        marginVertical: 20  
+    },
+    legendContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row"
+    },
+    stationDisplay: {
+        height : "50%"
+    },
     searchContainer: {
         justifyContent: "center",
         alignItems: "center",
