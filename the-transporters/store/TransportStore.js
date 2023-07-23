@@ -7,10 +7,10 @@ const properties = {
     forecastData : {}
 }
 
-const serviceAlerts = () => {
+const serviceAlerts = async () => {
   const axios = useAxios();
 
-  axios.get("/servicealerts")
+  return await axios.get("/servicealerts")
   .then(res => { 
     if (res.status == 200) {
         properties.serviceAlertsData = res.data
@@ -18,10 +18,10 @@ const serviceAlerts = () => {
   });
 };
 
-const carparkAvailability = () => {
+const carparkAvailability = async () => {
   const axios = useAxios();
 
-  return axios.get("/carparkavailability")
+  return await axios.get("/carparkavailability")
   .then(res => { 
     if (res.status == 200) {
         properties.carparkData = res.data
