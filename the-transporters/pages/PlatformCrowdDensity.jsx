@@ -14,7 +14,6 @@ const PlatformCrowdDensity = () => {
   useEffect(() => {
     const fetchCrowdData = async () => {
       if (selectedValue != null) {
-        console.log(selectedValue)
         await platformCrowd(selectedValue)
         setStations(properties.platformCrowdData.value)
       }
@@ -23,6 +22,18 @@ const PlatformCrowdDensity = () => {
     fetchCrowdData();
   }, [selectedValue]);
 
+  const crowdLevelColor = (crowdLevel) => {
+    switch (crowdLevel) {
+      case "l":
+        return platformCrowdStyle.lowCrowdLevel;
+      case "m":
+        return platformCrowdStyle.mediumCrowdLevel;
+      case "h":
+        return platformCrowdStyle.highCrowdLevel;
+      default:
+        break;
+    }
+  }
 
   const displayStations = (res) => {
     if (res === '') {
@@ -33,7 +44,7 @@ const PlatformCrowdDensity = () => {
       return stations.map((item, index) => {
         return (
           <View key={index}>
-            <Text> {item.Station} </Text>
+            <Text style={crowdLevelColor(item.CrowdLevel)}> {item.Station} </Text>
           </View>
         );
       });
@@ -42,30 +53,15 @@ const PlatformCrowdDensity = () => {
 
   return (
     <View style={{ backgroundColor: Colours.primaryLite, flex: 1 }}>
-      {/* <Text style={platformCrowdStyle.message}>
-        Please select the service line:
-      </Text> */}
 
-      {/* Add a dropdown for selection of service lines */}
-      {/* <RNPickerSelect
-        onValueChange={(value) => {
-          console.log(value);
-          setSelectedValue(value);
-        }}
-        placeholder={[{ label: "Circle Line", value: "CCL" }]}
-        items={[
-          { key: "Circle Line", label: "Circle Line", value: "CCL" },
-          { key: "North East Line", label: "North East Line", value: "NEL" },
-          { key: "East West Line", label: "East West Line", value: "EWL" },
-          {
-            key: "Thomson East Coast Line",
-            label: "Thomson East Coast Line",
-            value: "TEL",
-          },
-          { key: "North South Line", label: "North South Line", value: "NSL" },
-          { key: "Downtown Line", label: "Downtown Line", value: "DTL" },
-        ]}
-      /> */}
+      <View style={platformCrowdStyle.spacing}>
+        <Text> Crowd Level Legend: </Text>
+        <View style={platformCrowdStyle.legendContainer}>
+          <Text style={platformCrowdStyle.lowCrowdLevel}> Low </Text>
+          <Text style={platformCrowdStyle.mediumCrowdLevel}> Medium </Text>
+          <Text style={platformCrowdStyle.highCrowdLevel}> High </Text>
+        </View>
+      </View>
 
       <Picker
         selectedValue={selectedValue}
@@ -81,7 +77,9 @@ const PlatformCrowdDensity = () => {
         <Picker.Item label="Downtown Line" value="DTL" />
       </Picker>
 
-      {selectedValue != '' ? displayStations(selectedValue) : ""}
+      <View style={platformCrowdStyle.stationDisplay}>
+        {selectedValue != '' ? displayStations(selectedValue) : ""}
+      </View>
     </View>
   );
 };
