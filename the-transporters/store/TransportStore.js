@@ -35,8 +35,12 @@ const platformCrowd = (trainLine = "CCL") => {
   axios.get(`/platformcrowd?TrainLine=${trainLine}`)
   .then(res => { 
     if (res.status == 200) {
+        console.log(res.data)
         properties.platformCrowdData = res.data
     }
+  })
+  .catch(res => {
+    console.log(res.status)
   });
 };
 
