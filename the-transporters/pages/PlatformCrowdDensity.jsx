@@ -2,48 +2,35 @@ import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import Colours from "../assets/styles/Colours";
 import { platformCrowd, properties } from "../store/TransportStore";
-import RNPickerSelect from "react-native-picker-select";
+import { Picker } from "@react-native-picker/picker";
 import platformCrowdStyle from "../assets/styles/PlatformCrowdDensity";
 
 const PlatformCrowdDensity = () => {
-  const [result, setResult] = useState("");
-
-  const [stations, setStations] = useState([]);
 
   const [selectedValue, setSelectedValue] = useState(null);
 
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [stations, setStations] = useState(properties.platformCrowdData.value);
 
   useEffect(() => {
     if (selectedValue != null) {
-      platformCrowd(selectedValue);
-    } else {
-      platformCrowd();
-    }
-
-    setResult(properties.platformCrowdData);
-
-    setStations(properties.platformCrowdData.value);
-
-    console.log(properties.platformCrowdData);
-
-    if (!isLoaded) {
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 500);
-    }
+      console.log(selectedValue)
+      const promise = new Promise(platformCrowd(selectedValue))
+      .then(() => {
+        setStations(properties.platformCrowdData.value)
+      })
+    } 
   }, [selectedValue]);
 
-//   useEffect( () => {
-//     setResult()
-//   })
 
   const displayStations = (res) => {
-    if (res != null && res != undefined) {
+    if (res === '') {
+      return;
+    }
 
+    if (stations != undefined) {
       return stations.map((item, index) => {
         return (
-          <View key={stations.indexOf(item)}>
+          <View key={index}>
             <Text> {item.Station} </Text>
           </View>
         );
@@ -58,7 +45,7 @@ const PlatformCrowdDensity = () => {
       </Text>
 
       {/* Add a dropdown for selection of service lines */}
-      <RNPickerSelect
+      {/* <RNPickerSelect
         onValueChange={(value) => {
           console.log(value);
           setSelectedValue(value);
@@ -76,9 +63,23 @@ const PlatformCrowdDensity = () => {
           { key: "North South Line", label: "North South Line", value: "NSL" },
           { key: "Downtown Line", label: "Downtown Line", value: "DTL" },
         ]}
-      />
+      /> */}
 
-      {isLoaded ? displayStations(result) : ""}
+      <Picker
+        selectedValue={selectedValue}
+        onValueChange={(value) => setSelectedValue(value)}
+        mode="dropdown" // Android only
+      >
+        <Picker.Item label="Please select the train line" value="Placeholder" />
+        <Picker.Item label="Circle Line" value="CCL" />
+        <Picker.Item label="North East Line" value="NEL" />
+        <Picker.Item label="East West Line" value="EWL" />
+        <Picker.Item label="Thomson East Coast Line" value="TEL" />
+        <Picker.Item label="North South Line" value="NSL" />
+        <Picker.Item label="Downtown Line" value="DTL" />
+      </Picker>
+
+      {selectedValue != '' ? displayStations(selectedValue) : ""}
     </View>
   );
 };
