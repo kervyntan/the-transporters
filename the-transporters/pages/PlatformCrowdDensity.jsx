@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import Colours from "../assets/styles/Colours";
-import { platformCrowd, properties } from "../store/TransportStore";
+import { getPlatformCrowd, properties } from "../store/TransportStore";
 import { Picker } from "@react-native-picker/picker";
 import platformCrowdStyle from "../assets/styles/PlatformCrowdDensity";
+// import Loading from "../components/Loading";
 
 const PlatformCrowdDensity = () => {
 
@@ -12,9 +13,10 @@ const PlatformCrowdDensity = () => {
   const [stations, setStations] = useState(properties.platformCrowdData.value);
 
   useEffect(() => {
+    console.log(selectedValue)
     const fetchCrowdData = async () => {
       if (selectedValue != null) {
-        await platformCrowd(selectedValue)
+        await getPlatformCrowd(selectedValue)
         setStations(properties.platformCrowdData.value)
       }
     }
@@ -76,6 +78,8 @@ const PlatformCrowdDensity = () => {
         <Picker.Item label="North South Line" value="NSL" />
         <Picker.Item label="Downtown Line" value="DTL" />
       </Picker>
+
+      {/* <Loading /> */}
 
       <View style={platformCrowdStyle.stationDisplay}>
         {selectedValue != '' ? displayStations(selectedValue) : ""}

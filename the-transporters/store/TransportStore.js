@@ -7,7 +7,7 @@ const properties = {
     forecastData : {}
 }
 
-const serviceAlerts = async () => {
+const getServiceAlerts = async () => {
   const axios = useAxios();
 
   return await axios.get("/servicealerts")
@@ -21,7 +21,7 @@ const serviceAlerts = async () => {
   });
 };
 
-const carparkAvailability = async () => {
+const getCarparkAvailability = async () => {
   const axios = useAxios();
 
   return await axios.get("/carparkavailability")
@@ -35,7 +35,7 @@ const carparkAvailability = async () => {
   });
 };
 
-const platformCrowd = async (trainLine = "CCL") => {
+const getPlatformCrowd = async (trainLine = "CCL") => {
   const axios = useAxios();
 
   return await axios.get(`/platformcrowd?TrainLine=${trainLine}`)
@@ -50,7 +50,7 @@ const platformCrowd = async (trainLine = "CCL") => {
   });
 };
 
-const crowdForecast = async (trainLine = "CCL") => {
+const getCrowdForecast = async (trainLine = "CCL") => {
   const axios = useAxios();
 
   return await axios.get(`/crowdforecast?TrainLine=${trainLine}`)
@@ -64,4 +64,4 @@ const crowdForecast = async (trainLine = "CCL") => {
   });
 };
 
-export { properties, serviceAlerts, carparkAvailability, crowdForecast, platformCrowd };
+export { properties, getServiceAlerts, getCarparkAvailability, getCrowdForecast, getPlatformCrowd };
