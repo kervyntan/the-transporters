@@ -1,15 +1,33 @@
 import { StyleSheet } from 'react-native';
 
 const homeStyles = StyleSheet.create({
+    flex: {
+      display: "flex",
+      flexDirection: "row",
+    },
+    flexCenter: {
+      justifyContent: "space-between"
+    },
     welcome: {
       color: "#000",
       fontWeight : "light",
       fontSize: "2rem",
       textAlign: "left",
-      top: 30,
+      top: 10,
       letterSpacing: 0.08,
       fontSize: 30,
       alignSelf: "center"
+    },
+    infoDisplay: {
+      display: "flex",
+      flexDirection: "row",
+    },
+    infoDisplayTitle: {
+      fontSize: 18,
+      marginTop : 20
+    },  
+    spacing: {
+      marginTop: 20
     },
     input: {
       borderWidth: 1,
